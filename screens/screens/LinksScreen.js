@@ -17,12 +17,18 @@ export default function LinksScreen() {
         </View>
       </View>
 
-      <View>
-        <TouchableOpacity style={styles.addActivity}>
-          <LinearGradient colors={['#F6CB00', '#EF7F4D']} start={[0, 1]} end={[1, 0]}>
-            <Text style={{color: 'white'}, styles.username}>+ ADD ACTIVITY</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+      <TouchableOpacity>
+        <LinearGradient colors={['#F6CB00', '#EF7F4D']} start={[0, 1]} end={[1, 0]} style={styles.addActivity}>
+          <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold', letterSpacing: 5}}>+ ADD ACTIVITY</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+      <View style={styles.badges}>
+
+      </View>
+
+      <View style={styles.badges}>
+
       </View>
     </View>
   );
@@ -68,11 +74,19 @@ const styles = StyleSheet.create({
   },
 
   addActivity: {
-    width: '100%', 
-    height: 30,
-    borderRadius: 10,
+    width: '100%',
+    borderRadius: 15,
     padding: 10,
+    alignItems: 'center',
   },
 
-
+  badges: {
+    backgroundColor: 'white',
+    flex: 2,
+    borderRadius: 15,
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    elevation: 10,
+  },
 });
