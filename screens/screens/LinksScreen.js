@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const ACTIVITYDATA = [
@@ -35,6 +35,13 @@ const ACTIVITYDATA = [
   },
 ];
 
+const BADGEDATA = [
+  {
+    id: '1',
+    url: 'potato_badge',
+  },
+]
+
 function Item({ title, time }) {
   return (
     <View style={styles.item}>
@@ -44,14 +51,35 @@ function Item({ title, time }) {
   );
 }
 
+function Badge({ imgAddress }) {
+  var test = `require(../assets/images/${imgAddress})`;
+  console.log(test);
+  return (
+    <View style={styles.badgeItem}>
+      <Image
+        source={require('../assets/images/potato_badge.png')}
+        style={{width: 80, height: 80}}
+      />
+      <Image
+        source={require('../assets/images/mashed_badge.png')}
+        style={{width: 80, height: 80}}
+      />
+      <Image
+        source={require('../assets/images/fries_badge.png')}
+        style={{width: 80, height: 80}}
+      />
+    </View>
+  );
+}
+
 export default function LinksScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
-        { <Image
+        <Image
           source={require('../assets/images/user_avatar.png')}
           style={{width: 90, height: 90, borderRadius: 90, marginRight: 20}}
-        /> }
+        />
         <View>
           <Text style={styles.username}>John Smith</Text>
           <Text style={styles.level}>John Smith</Text>
@@ -68,10 +96,11 @@ export default function LinksScreen() {
       <View style={styles.badges}>
           <Text style={styles.username}>Badges</Text>
           <FlatList
-            // data={DATA}
-            // renderItem={({ item }) => <Item title={item.title} time={item.time} />}
-            // keyExtractor={item => item.id}
+            data={BADGEDATA} //user level
+            renderItem={({ item }) => <Badge imgAddress={item.url} />}
+            keyExtractor={item => item.id}
             horizontal={true}
+            // horizontal={true}
           />
       </View>
 
@@ -88,7 +117,7 @@ export default function LinksScreen() {
 }
 
 LinksScreen.navigationOptions = {
-  title: 'Links',
+  title: 'Profile',
 };
 
 const styles = StyleSheet.create({
@@ -171,5 +200,10 @@ const styles = StyleSheet.create({
 
   item: {
     marginTop: 12,
+  },
+
+  badgeItem: {
+    marginTop: 12,
+    flexDirection: 'row',
   }
 });
