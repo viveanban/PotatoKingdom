@@ -5,10 +5,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
-        {/* <Image 
-          source={require('./../images/user_avatar.png')}  
-          style={{width: 90, height: 90, borderRadius: 90, marginRight: 20}} 
-        /> */}
+        { <Image
+          source={require('./assets/user_avatar.png')}
+          style={{width: 90, height: 90, borderRadius: 90, marginRight: 20}}
+        /> }
         <View>
           <Text style={styles.username}>John Smith</Text>
           <Text style={styles.level}>John Smith</Text>
