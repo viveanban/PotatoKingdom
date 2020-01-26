@@ -1,6 +1,48 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+
+const ACTIVITYDATA = [
+  {
+    id: '1',
+    title: 'Jamming',
+    time: '12',
+  },
+  {
+    id: '2',
+    title: 'Running',
+    time: '15',
+  },
+  {
+    id: '3',
+    title: 'Running',
+    time: '20',
+  },
+  {
+    id: '4',
+    title: 'Running',
+    time: '20',
+  },
+  {
+    id: '5',
+    title: 'Running',
+    time: '20',
+  },
+  {
+    id: '6',
+    title: 'Running',
+    time: '20',
+  },
+];
+
+function Item({ title, time }) {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.historyTitle}>{title}</Text>
+      <Text style={styles.timeTitle}>{time} minutes</Text>
+    </View>
+  );
+}
 
 export default function LinksScreen() {
   return (
@@ -24,11 +66,22 @@ export default function LinksScreen() {
       </TouchableOpacity>
 
       <View style={styles.badges}>
-
+          <Text style={styles.username}>Badges</Text>
+          <FlatList
+            // data={DATA}
+            // renderItem={({ item }) => <Item title={item.title} time={item.time} />}
+            // keyExtractor={item => item.id}
+            horizontal={true}
+          />
       </View>
 
-      <View style={styles.badges}>
-
+      <View style={styles.activityLog}>
+        <Text style={styles.username}>Activity Log</Text>
+        <FlatList
+          data={ACTIVITYDATA}
+          renderItem={({ item }) => <Item title={item.title} time={item.time} />}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );
@@ -43,14 +96,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFAFF',
     padding: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
 
   profileHeader: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    flex: 1,
+    flex: 0.8,
   },
 
   username: {
@@ -82,11 +135,41 @@ const styles = StyleSheet.create({
 
   badges: {
     backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 15,
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    elevation: 10,
+    padding: 15,
+    marginTop: 15,
+  },
+
+  activityLog: {
+    backgroundColor: 'white',
     flex: 2,
     borderRadius: 15,
     shadowOffset: { width: 2, height: 2 },
     shadowColor: 'black',
     shadowOpacity: 0.5,
     elevation: 10,
+    padding: 15,
+    marginTop: 15,
   },
+
+  historyTitle: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#F6CB00',
+    letterSpacing: 1,
+  },
+
+  timeTitle: {
+    color: '#bfbfbf',
+    letterSpacing: 0.5,
+  },
+
+  item: {
+    marginTop: 12,
+  }
 });
